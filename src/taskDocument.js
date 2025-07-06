@@ -172,6 +172,29 @@ class TaskDocument {
     this.checkInitialized();
     return this.subtasks;
   }
+
+  // 修改子任务
+  async updateSubtask(taskId, name, description) {
+    this.checkInitialized();
+    
+    // 查找子任务
+    const taskIndex = this.subtasks.findIndex(task => task.id === taskId);
+    if (taskIndex === -1) {
+      throw new Error(`子任务不存在: ${taskId}`);
+    }
+    
+    // 更新子任务信息
+    if (name !== undefined) {
+      this.subtasks[taskIndex].name = name;
+    }
+    
+    if (description !== undefined) {
+      this.subtasks[taskIndex].description = description;
+    }
+    
+    await this.saveDocument();
+    return this.subtasks[taskIndex].id;
+  }
 }
 
 module.exports = TaskDocument;

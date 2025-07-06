@@ -32,7 +32,8 @@ class McpServer {
       tools.insertSubtask,
       tools.getSubtaskNameList,
       tools.getSubtaskDetail,
-      tools.getSubtaskFullList
+      tools.getSubtaskFullList,
+      tools.updateSubtask  // 添加这一行
     ].forEach(tool => {
       this.server.registerTool(
         tool.name,

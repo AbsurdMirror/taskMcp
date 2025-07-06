@@ -1,11 +1,16 @@
 {
   "name": "task-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "基于MCP协议的任务文档管理系统",
   "main": "src/index.js",
   "bin": {
     "task-mcp": "src/index.js"
   },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "start": "node src/index.js",
     "test": "node test/test-requests.js",
@@ -15,9 +20,15 @@
     "mcp",
     "task",
     "document",
-    "markdown"
+    "markdown",
+    "cli",
+    "model-context-protocol"
   ],
   "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:AbsurdMirror/taskMCP.git"
+  },
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.13.3",

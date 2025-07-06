@@ -2,11 +2,12 @@
 // src/index.js - MCP服务器入口
 const McpServer = require('./mcp/server');
 const { Command } = require('commander');
+const { version } = require('../package.json');
 
 // 命令行参数解析
 const program = new Command();
 program
-  .version('1.0.0')
+  .version(version)
   .option('-p, --port <number>', 'MCP服务器端口', 3000)
   .parse(process.argv);
 

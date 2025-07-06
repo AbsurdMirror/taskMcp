@@ -244,6 +244,43 @@ const getSubtaskFullList = {
   }
 };
 
+// 修改子任务
+const updateSubtask = {
+  name: 'updateSubtask',
+  description: '修改指定子任务的名称和描述',
+  inputSchema: {
+    taskId: z.number().int().positive().describe("子任务ID"),
+    name: z.string().optional().describe("子任务的新名称（可选）"),
+    description: z.string().optional().describe("子任务的新描述（可选）")
+  },
+  async handler(input, context) {
+    try {
+      // 获取任务文档实例
+      const taskDoc = TaskDocument.getInstance();
+      
+      // 修改子任务
+      const taskId = await taskDoc.updateSubtask(input.taskId, input.name, input.description);
+      
+      return {
+        content: [{
+          type: 'text',
+          text: '子任务修改成功',
+          success: true,
+          taskId
+        }]
+      };
+    } catch (error) {
+      return {
+        content: [{
+          type: 'text',
+          text: `子任务修改失败: ${error.message}`,
+          success: false
+        }]
+      };
+    }
+  }
+};
+
 module.exports = {
   setTaskDocument,
   setTaskOverview,
@@ -251,5 +288,6 @@ module.exports = {
   insertSubtask,
   getSubtaskNameList,
   getSubtaskDetail,
-  getSubtaskFullList
+  getSubtaskFullList,
+  updateSubtask
 };
